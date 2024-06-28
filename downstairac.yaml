@@ -1,5 +1,5 @@
 esphome:
-  name: downstairac
+  name: downstairesac
   includes: 
     - HiSenseAC.h
 
@@ -42,5 +42,5 @@ climate:
     App.register_component(my_custom_climate);
     return {my_custom_climate};
   climates:
-    - name: "Downstair AC"
+    - name: "Downstaires AC"
     
