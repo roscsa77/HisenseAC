@@ -1,0 +1,46 @@
+esphome:
+  name: downstairac
+  includes: 
+    - HiSenseAC.h
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: xxxxxxxx
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: xxxxxxxxxx
+    password: xxxxxxxxxxxxxxx
+
+captive_portal:
+
+uart:
+  rx_pin: 26
+  tx_pin: 14
+  baud_rate: 9600
+  id: uart_bus
+
+climate:
+- platform: custom
+  lambda: |-
+    auto my_custom_climate = new MyCustomClimate(id(uart_bus));
+    App.register_component(my_custom_climate);
+    return {my_custom_climate};
+  climates:
+    - name: "Downstair AC"
+    
